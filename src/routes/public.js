@@ -23,10 +23,10 @@ class Public extends React.Component{
                 <LayoutSide />
 
                 <Switch>
-                    <Route path="/"><HomeIndex /></Route>
-                    <Route path="/berita"><Berita /></Route>
-                    <Route path="/galeri"><Galeri /></Route>
-                    <Route path="/login"><Login /></Route>
+                    <Route path="/" exact component={HomeIndex} />
+                    <Route path="/berita" component={Berita} />
+                    <Route path="/galeri" component={Galeri} />
+                    <Route path="/login" component={Login} />
                 </Switch>
             </Router>
         )   

@@ -8,10 +8,10 @@ class LayoutSide extends React.Component{
     render() {
         return(
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
-                <link to="/" class="brand-link" style={{backgroundColor: 'darkorange', color: 'white'}}>
+                <Link to="/" class="brand-link" style={{backgroundColor: 'darkorange', color: 'white'}}>
                     <i class="nav-icon fas fa-broadcast-tower ml-3"></i> &nbsp; 
                     <span class="brand-text font-weight-light">VOMUZA 107,9 FM</span>
-                </link>
+                </Link>
 
                 <div class="sidebar">
                 <nav class="mt-2">
@@ -26,10 +26,10 @@ class LayoutSide extends React.Component{
                         </a>
                         <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">
+                            <Link to="/" class="nav-link">
                             <i class="fas fa-home nav-icon"></i>
                             <p>Home</p>
-                            </a>
+                            </Link>
                         </li>
                         <li class="nav-item">
                             <a href="profil.html" class="nav-link">

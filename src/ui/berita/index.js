@@ -1,14 +1,29 @@
 import React from 'react';
-
+import { API_URL } from '../../config/env';
 import axios from 'axios';
-import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment-timezone';
 
 class Berita extends React.Component{
     state={
+        berita: []
 
     }
+
+    componentDidMount() {
+        this.getBerita();
+    }
+
+    getBerita(){
+        axios.get(`${API_URL}/berita/getall`).then(res => {
+            console.log('res:', res.data)
+            this.setState({berita: res.data})
+
+        })
+    }
+
     render(){
+        console.log(this.state, "berita");
         return(
             <div class="content-wrapper">
                 <div class="content-header">
@@ -98,134 +113,43 @@ class Berita extends React.Component{
                             <h3 class="card-title"><i class="fas fa-newspaper"></i> Berita</h3>
                         </div>
                         <div class="card mb-2 ml-3 mr-3 mt-3" style={{maxWidth: "100%"}}>
-                            <div class="row g-0">
-                            <div class="col-sm-4">
-                                <img class="image-responsive" style={{maxWidth: "100%", src:"coba.png", alt:"..."}} />
-                            </div>
-                            <div class="col-sm-8 mt-2">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
-                                        <i class="fas fa-eye">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
-                                </td>
+                            {
+                                this.state.berita.map(item => (
+                                    <div class="row g-0">
+                                        <div class="col-sm-4">
+                                            <img class="image-responsive" src={item.picture} style={{maxWidth: "100%", alt:"..."}} />
+                                        </div>
+                                        <div class="col-sm-8 mt-2">
+                                            <div class="card-body">
+                                            <h5 class="card-title">{item.tittle}</h5>
+                                            <p class="card-text">{item.body}</p>
+                                            <p class="card-text"><small class="text-muted">{item.CreateAt}</small></p>
 
-                                </div>
-                            </div>
-                            </div>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-eye">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
 
-                            <div class="row g-0">
-                            <div class="col-sm-4 mt-2">
-                                <img class="image-responsive" style={{maxWidth: "100%", src:"coba.png", alt:"..."}} />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body" style={{maxHeight: "50%"}}>
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
-                                        <i class="fas fa-eye">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
-                                </td>
-
-                                </div>
-                            </div>
-                            </div>
-
-                            <div class="row g-0 mt-2">
-                            <div class="col-md-4">
-                                <img class="image-responsive" style={{maxWidth: "100%", src:"coba.png", alt:"..."}} />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
-                                        <i class="fas fa-eye">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
-                                </td>
-
-                                </div>
-                            </div>
-                            </div>
-
-                            <div class="row g-0 mt-2">
-                            <div class="col-md-4">
-                                <img class="image-responsive" style={{maxWidth: "100%", src:"coba.png", alt:"..."}} />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
-                                        <i class="fas fa-eye">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
-                                </td>
-
-                                </div>
-                            </div>
-                            </div>
-
+                                            </div>
+                                        </div>
+                                    </div>
+                                )) 
+                            }
+                            
                         </div>
                         </div>
                     </div>
